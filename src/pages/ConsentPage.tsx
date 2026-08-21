@@ -1,0 +1,11 @@
+import { ExternalLink, LockKeyhole } from 'lucide-react'
+import type { AssessmentState } from '../types/assessment'
+import { NavButtons } from '../components/forms/FormControls'
+
+export function ConsentPage({ data, update, onBack, onNext, error }: { data: AssessmentState; update: <K extends keyof AssessmentState>(key: K, value: AssessmentState[K]) => void; onBack: () => void; onNext: () => void; error?: string }) {
+  const privacy = import.meta.env.VITE_PRIVACY_POLICY_URL || '/privacy'
+  return <section className="page-wrap"><div className="eyebrow"><LockKeyhole size={16}/> ข้อมูลของคุณได้รับการดูแล</div><h1 className="page-title">ก่อนเริ่มการประเมิน</h1><p className="page-lead">โปรดอ่านและเลือกความยินยอมแต่ละรายการอย่างอิสระ คุณเปลี่ยนใจได้ก่อนส่งข้อมูล</p><div className="mt-8 space-y-4">
+    <label className={`consent-card ${data.consentHealth ? 'selected' : ''}`}><input type="checkbox" checked={data.consentHealth} onChange={(e) => update('consentHealth', e.target.checked)} className="mt-1 size-5 accent-[#315e4c]" /><span><span className="block text-sm font-bold">ความยินยอมเพื่อประเมินสุขภาพ <span className="text-red-700">จำเป็น</span></span><span className="mt-1 block text-sm leading-6 text-slate-600">ข้าพเจ้ายินยอมให้โรงพยาบาลเก็บและใช้ข้อมูลที่กรอกเพื่อคำนวณผลการประเมินและแสดงคำแนะนำด้านสุขภาพ</span></span></label>
+    <label className={`consent-card ${data.consentMarketing ? 'selected' : ''}`}><input type="checkbox" checked={data.consentMarketing} onChange={(e) => update('consentMarketing', e.target.checked)} className="mt-1 size-5 accent-[#315e4c]" /><span><span className="block text-sm font-bold">ความยินยอมให้ติดต่อกลับ <span className="font-medium text-slate-500">ไม่บังคับ</span></span><span className="mt-1 block text-sm leading-6 text-slate-600">ข้าพเจ้ายินยอมให้โรงพยาบาลติดต่อกลับเพื่อให้ข้อมูลเกี่ยวกับบริการ โปรแกรมตรวจสุขภาพ หรือการนัดหมาย</span></span></label>
+  </div>{error ? <p role="alert" className="mt-4 text-sm font-semibold text-red-700">{error}</p> : null}<a href={privacy} target="_blank" rel="noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-sage-700 underline underline-offset-4">อ่านนโยบายความเป็นส่วนตัว <ExternalLink size={15}/></a><NavButtons onBack={onBack} onNext={onNext} /></section>
+}

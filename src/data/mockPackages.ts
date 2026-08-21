@@ -1,0 +1,8 @@
+import type { HealthPackage } from '../types/package'
+
+export const mockPackages: HealthPackage[] = [
+  { packageId: 'CV001', packageName: 'Basic Cardiovascular Screening', shortDescription: 'ชุดตรวจพื้นฐานเพื่อทบทวนปัจจัยสุขภาพหัวใจ', fullDescription: 'DEMO ONLY — รายละเอียดและรายการตรวจต้องได้รับการอนุมัติจากโรงพยาบาล', includedTests: ['ตรวจสุขภาพพื้นฐาน', 'ทบทวนความดัน'], packageTags: ['basic_cv'], minAge: 35, maxAge: 70, active: true, priority: 4, demoOnly: true },
+  { packageId: 'CV002', packageName: 'Cardiometabolic Screening', shortDescription: 'ชุดตรวจสำหรับปัจจัยเมตาบอลิกที่ควรติดตาม', fullDescription: 'DEMO ONLY — รายละเอียดและรายการตรวจต้องได้รับการอนุมัติจากโรงพยาบาล', includedTests: ['HbA1c', 'การทำงานของไต'], packageTags: ['metabolic', 'diabetes', 'hypertension'], minAge: 35, maxAge: 70, active: true, priority: 3, demoOnly: true },
+  { packageId: 'CV003', packageName: 'Comprehensive Cardiovascular Assessment', shortDescription: 'การประเมินสุขภาพหัวใจแบบครอบคลุม', fullDescription: 'DEMO ONLY — รายละเอียดและรายการตรวจต้องได้รับการอนุมัติจากโรงพยาบาล', includedTests: ['ประเมินปัจจัยเสี่ยง', 'ปรึกษาบุคลากรทางการแพทย์'], packageTags: ['high_cv_risk', 'hypertension'], minAge: 35, maxAge: 70, active: true, priority: 2, demoOnly: true },
+  { packageId: 'CV004', packageName: 'Cardiology Consultation', shortDescription: 'เส้นทางนัดหมายเพื่อพบแพทย์โรคหัวใจ', fullDescription: 'DEMO ONLY — ไม่ใช่คำแนะนำจาก Thai CV Risk %', includedTests: ['ปรึกษาแพทย์โรคหัวใจ'], packageTags: ['cardiology'], minAge: 18, maxAge: 100, active: true, priority: 1, demoOnly: true },
+]

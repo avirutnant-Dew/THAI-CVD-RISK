@@ -1,0 +1,3 @@
+function getActivePackages_() {
+  return cachedActiveRows_('Package_Master').map(function (row) { return { package_id:cleanText_(row.package_id,50), package_name:cleanText_(row.package_name,150), short_description:cleanText_(row.short_description,500), full_description:cleanText_(row.full_description,2000), normal_price:numberOrBlank_(row.normal_price), promo_price:numberOrBlank_(row.promo_price), image_url:cleanText_(row.image_url,500), detail_url:cleanText_(row.detail_url,500), included_tests:String(row.included_tests||'').split('|').filter(Boolean), package_tags:String(row.package_tags||'').split('|').filter(Boolean), min_age:Number(row.min_age||0), max_age:Number(row.max_age||120), priority:Number(row.priority||99) }; });
+}

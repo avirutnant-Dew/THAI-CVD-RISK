@@ -1,0 +1,14 @@
+key,value
+hospital_name,โรงพยาบาลพริ้นซ์ปากน้ำโพ
+emergency_phone,056-000111
+line_url,
+privacy_policy_url,
+form_version,cv_form_v1
+formula_version,thai_cv_risk_v1
+consent_version,pdpa_consent_v1
+risk_classification_version,three_level_v1
+physician_review_threshold,10
+risk_low_max,10
+risk_intermediate_max,20
+enable_callback,TRUE
+enable_package_recommendation,TRUE

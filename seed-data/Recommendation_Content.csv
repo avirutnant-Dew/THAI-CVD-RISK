@@ -1,0 +1,8 @@
+recommendation_id,title_th,description_th,category,priority,active,medical_approval_version
+REC_EMERGENCY,รับการประเมินทางการแพทย์โดยเร็ว,ไม่ควรรอผลจากแบบประเมินออนไลน์ หากอาการรุนแรงหรือกำลังเป็นอยู่ให้ติดต่อบริการฉุกเฉิน,safety,1,TRUE,DEMO_REVIEW_REQUIRED
+REC_CVD,พบแพทย์เพื่อวางแผนดูแลโดยตรง,แบบประเมินสำหรับผู้ที่ยังไม่เคยเกิดโรคอาจไม่เหมาะกับประวัติของคุณ,clinical,2,TRUE,DEMO_REVIEW_REQUIRED
+REC_PHYSICIAN,ปรึกษาแพทย์เพื่อประเมินความเสี่ยงโดยรวม,แพทย์สามารถทบทวนประวัติ ผลตรวจ และปัจจัยอื่นที่แบบประเมินนี้ไม่ครอบคลุม,clinical,2,TRUE,DEMO_REVIEW_REQUIRED
+REC_BP,ติดตามความดันโลหิต,ควรวัดซ้ำด้วยวิธีที่ถูกต้อง และปรึกษาบุคลากรทางการแพทย์หากค่ายังสูง,clinical,2,TRUE,DEMO_REVIEW_REQUIRED
+REC_DM,ทบทวนการควบคุมระดับน้ำตาล,พิจารณาทบทวน HbA1c ระดับน้ำตาล และการทำงานของไตกับทีมรักษา,investigation,3,TRUE,DEMO_REVIEW_REQUIRED
+REC_SMOKE,วางแผนหยุดสูบบุหรี่,ขอคำปรึกษาเพื่อเลือกวิธีเลิกบุหรี่ที่เหมาะสมและปลอดภัยสำหรับคุณ,lifestyle,4,TRUE,DEMO_REVIEW_REQUIRED
+REC_LIFESTYLE,ดูแลสุขภาพหัวใจอย่างสม่ำเสมอ,เลือกอาหารที่เหมาะสม จำกัดเค็ม เคลื่อนไหวตามความเหมาะสม นอนให้เพียงพอ และติดตามโรคประจำตัว,lifestyle,4,TRUE,DEMO_REVIEW_REQUIRED

@@ -16,7 +16,7 @@ function setupGoogleSheet() {
     sheet.setFrozenRows(1);
   });
   seedIfEmpty_(ss.getSheetByName('Config'), [
-    ['hospital_name','โรงพยาบาลพริ้นซ์ปากน้ำโพ'],['emergency_phone','056-000111'],['form_version','cv_form_v1'],['formula_version','thai_cv_risk_v1'],['consent_version','pdpa_consent_v1'],['risk_classification_version','three_level_v1'],['physician_review_threshold','10'],['risk_low_max','10'],['risk_intermediate_max','20'],['enable_callback','TRUE'],['enable_package_recommendation','TRUE']
+    ['hospital_name','โรงพยาบาลพริ้นซ์ปากน้ำโพ'],['emergency_phone','056-000111'],['form_version','cv_form_v1'],['formula_version','thai_cv_risk_rama_v2'],['consent_version','pdpa_consent_v1'],['risk_classification_version','three_level_v1'],['physician_review_threshold','10'],['risk_low_max','10'],['risk_intermediate_max','20'],['enable_callback','TRUE'],['enable_package_recommendation','TRUE']
   ]);
   seedIfEmpty_(ss.getSheetByName('Recommendation_Rules'), [
     ['R001','Emergency symptoms','boolean','redFlags','=','TRUE','safety','REC_EMERGENCY','',1,'TRUE','demo_v1'],['R002','Established CVD','boolean','existingCvd','=','TRUE','clinical','REC_CVD','cardiology',2,'TRUE','demo_v1'],['R003','Physician review threshold','number','riskPercent','>=','10','physician_review','REC_PHYSICIAN','high_cv_risk',2,'TRUE','demo_v1'],['R004','Elevated SBP','number','sbp','>=','130','clinical','REC_BP','hypertension',2,'TRUE','demo_v1'],['R005','Diabetes','boolean','diabetes','=','TRUE','investigation','REC_DM','diabetes',3,'TRUE','demo_v1'],['R006','Current smoker','text','smoking','=','current','lifestyle','REC_SMOKE','',4,'TRUE','demo_v1'],['R007','General lifestyle','number','riskPercent','>=','0','lifestyle','REC_LIFESTYLE','basic_cv',4,'TRUE','demo_v1']

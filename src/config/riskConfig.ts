@@ -1,7 +1,7 @@
 import type { RiskLevel } from '../types/assessment'
 
 export const FORM_VERSION = 'cv_form_v1'
-export const FORMULA_VERSION = 'thai_cv_risk_v1'
+export const FORMULA_VERSION = 'thai_cv_risk_rama_v2'
 export const CONSENT_VERSION = 'pdpa_consent_v1'
 export const RISK_CLASSIFICATION_VERSION = 'three_level_v1'
 

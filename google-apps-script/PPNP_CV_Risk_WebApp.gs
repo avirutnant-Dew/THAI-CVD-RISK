@@ -48,7 +48,7 @@ function digest_(text) { return Utilities.computeDigest(Utilities.DigestAlgorith
 // ===== ConfigService.gs =====
 var DEFAULT_PUBLIC_CONFIG_ = {
   hospital_name: 'โรงพยาบาลพริ้นซ์ปากน้ำโพ', emergency_phone: '056-000111', line_url: '', privacy_policy_url: '',
-  form_version: 'cv_form_v1', formula_version: 'thai_cv_risk_v1', consent_version: 'pdpa_consent_v1',
+  form_version: 'cv_form_v1', formula_version: 'thai_cv_risk_rama_v2', consent_version: 'pdpa_consent_v1',
   risk_classification_version: 'three_level_v1', physician_review_threshold: 10,
   risk_low_max: 10, risk_intermediate_max: 20, enable_callback: true, enable_package_recommendation: true
 };
@@ -94,19 +94,19 @@ function cachedActiveRows_(sheetName) {
 }
 
 // ===== RiskCalculator.gs =====
-var FORMULA_VERSION_ = 'thai_cv_risk_v1';
+var FORMULA_VERSION_ = 'thai_cv_risk_rama_v2';
 
 function calculateServerRisk_(payload) {
   var age = Number(payload.age), sex = payload.gender === 'male' ? 1 : 0, sbp = Number(payload.sbp);
   var dm = payload.diabetes_status === 'yes' ? 1 : 0, smoking = payload.smoking_status === 'current' ? 1 : 0;
   var fullScore, model = String(payload.calculation_model);
   if (model === 'lab') {
-    fullScore = (0.08183 * age) + (0.39499 * sex) + (0.02084 * sbp) + (0.69974 * dm) + (0.00212 * Number(payload.total_cholesterol)) + (0.41916 * smoking);
+    fullScore = (0.0818347640193792 * age) + (0.394986128542107 * sex) + (0.0208425438624519 * sbp) + (0.699741921871077 * dm) + (0.00212384055469836 * Number(payload.total_cholesterol)) + (0.419162811751856 * smoking);
   } else if (model === 'non_lab') {
-    fullScore = (0.079 * age) + (0.128 * sex) + (0.019350987 * sbp) + (0.58454 * dm) + (3.512566 * (Number(payload.waist_cm) / Number(payload.height_cm))) + (0.459 * smoking);
+    fullScore = (0.0794420169146399 * age) + (0.127658073818733 * sex) + (0.0193509871323239 * sbp) + (0.584543504554125 * dm) + (0.0351256637183026 * (Number(payload.waist_cm) / Number(payload.height_cm)) * 100) + (0.459312425773018 * smoking);
   } else throw apiError_('VALIDATION_ERROR', 'ข้อมูลการคำนวณไม่ครบถ้วน');
-  var baseline = model === 'lab' ? 7.04423 : 7.720484;
-  var riskPercent = (1 - Math.pow(0.978296, Math.exp(fullScore - baseline))) * 100;
+  var baseline = model === 'lab' ? 7.044233 : 7.712325;
+  var riskPercent = (1 - Math.pow(0.964588, Math.exp(fullScore - baseline))) * 100;
   return { riskPercent: riskPercent, fullScore: fullScore, modelType: model };
 }
 
@@ -120,8 +120,8 @@ function classifyServerRisk_(risk, config) {
 function testRiskCalculator_() {
   var lab = calculateServerRisk_({ age:52, gender:'male', sbp:148, diabetes_status:'yes', smoking_status:'never', total_cholesterol:225, calculation_model:'lab' });
   var nonLab = calculateServerRisk_({ age:52, gender:'male', sbp:148, diabetes_status:'yes', smoking_status:'never', waist_cm:95, height_cm:170, calculation_model:'non_lab' });
-  if (Math.abs(lab.fullScore - 8.91121) > 0.00002 || Math.abs(lab.riskPercent - 13.23) > 0.02) throw new Error('Lab vector failed');
-  if (Math.abs(nonLab.fullScore - 9.64739) > 0.00002 || Math.abs(nonLab.riskPercent - 13.99) > 0.02) throw new Error('Non-lab vector failed');
+  if (Math.abs(lab.fullScore - 8.9126964) > 0.00002 || Math.abs(lab.riskPercent - 20.83) > 0.02) throw new Error('Lab vector failed');
+  if (Math.abs(nonLab.fullScore - 9.6700373) > 0.00002 || Math.abs(nonLab.riskPercent - 22.54) > 0.02) throw new Error('Non-lab vector failed');
   return { lab: lab, nonLab: nonLab, passed: true };
 }
 

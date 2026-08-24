@@ -33,18 +33,18 @@ function assertValid(input: Partial<LabRiskInputs & NonLabRiskInputs>, modelType
 export function calculateLabRisk(input: LabRiskInputs): CalculationOutput {
   assertValid(input, 'lab')
   const sex = input.gender === 'male' ? 1 : 0
-  const fullScore = (0.08183 * input.age) + (0.39499 * sex) + (0.02084 * input.sbp) +
-    (0.69974 * Number(input.diabetes)) + (0.00212 * input.cholesterol) + (0.41916 * Number(input.smoking))
-  const riskPercent = (1 - Math.pow(0.978296, Math.exp(fullScore - 7.04423))) * 100
+  const fullScore = (0.0818347640193792 * input.age) + (0.394986128542107 * sex) + (0.0208425438624519 * input.sbp) +
+    (0.699741921871077 * Number(input.diabetes)) + (0.00212384055469836 * input.cholesterol) + (0.419162811751856 * Number(input.smoking))
+  const riskPercent = (1 - Math.pow(0.964588, Math.exp(fullScore - 7.044233))) * 100
   return { riskPercent, fullScore, modelType: 'lab' }
 }
 
 export function calculateNonLabRisk(input: NonLabRiskInputs): CalculationOutput {
   assertValid(input, 'non_lab')
   const sex = input.gender === 'male' ? 1 : 0
-  const fullScore = (0.079 * input.age) + (0.128 * sex) + (0.019350987 * input.sbp) +
-    (0.58454 * Number(input.diabetes)) + (3.512566 * (input.waist / input.height)) + (0.459 * Number(input.smoking))
-  const riskPercent = (1 - Math.pow(0.978296, Math.exp(fullScore - 7.720484))) * 100
+  const fullScore = (0.0794420169146399 * input.age) + (0.127658073818733 * sex) + (0.0193509871323239 * input.sbp) +
+    (0.584543504554125 * Number(input.diabetes)) + (0.0351256637183026 * (input.waist / input.height) * 100) + (0.459312425773018 * Number(input.smoking))
+  const riskPercent = (1 - Math.pow(0.964588, Math.exp(fullScore - 7.712325))) * 100
   return { riskPercent, fullScore, modelType: 'non_lab' }
 }
 

@@ -35,7 +35,7 @@ function parseRuleValue(value: unknown, operator: string): RecommendationRule['v
 
 export function submitAssessment(state: AssessmentState, age: number, result: RiskResult | null, factors: RiskFactor[], recommendations: RecommendationResult | null) {
   return request<AssessmentResponse>('assessment', { method: 'POST', body: JSON.stringify({
-    action: 'assessment', form_version: 'cv_form_v1', formula_version: 'thai_cv_risk_v1', risk_classification_version: 'three_level_v1',
+    action: 'assessment', form_version: 'cv_form_v1', formula_version: 'thai_cv_risk_rama_v2', risk_classification_version: 'three_level_v1',
     first_name: sanitizeText(state.firstName), last_name: sanitizeText(state.lastName), dob: state.dob, age, gender: state.gender,
     phone: normalizePhone(state.phone), email: sanitizeText(state.email), sbp: Number(state.sbp), diabetes_status: state.diabetes,
     smoking_status: state.smoking, total_cholesterol: state.cholesterol ? Number(state.cholesterol) : null,

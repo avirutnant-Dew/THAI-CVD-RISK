@@ -4,14 +4,14 @@ import { calculateLabRisk, calculateNonLabRisk, classifyRisk, validateRiskInputs
 describe('Thai CV Risk calculator', () => {
   it('matches laboratory reference vector', () => {
     const result = calculateLabRisk({ age: 52, gender: 'male', sbp: 148, diabetes: true, cholesterol: 225, smoking: false })
-    expect(result.fullScore).toBeCloseTo(8.91121, 5)
-    expect(result.riskPercent).toBeCloseTo(13.23, 2)
+    expect(result.fullScore).toBeCloseTo(8.9126964, 5)
+    expect(result.riskPercent).toBeCloseTo(20.83, 2)
   })
 
   it('matches non-laboratory reference vector', () => {
     const result = calculateNonLabRisk({ age: 52, gender: 'male', sbp: 148, diabetes: true, waist: 95, height: 170, smoking: false })
-    expect(result.fullScore).toBeCloseTo(9.64739, 5)
-    expect(result.riskPercent).toBeCloseTo(13.99, 2)
+    expect(result.fullScore).toBeCloseTo(9.6700373, 5)
+    expect(result.riskPercent).toBeCloseTo(22.54, 2)
   })
 
   it('responds directionally to sex, smoking and diabetes', () => {

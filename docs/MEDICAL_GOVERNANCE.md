@@ -4,7 +4,7 @@
 
 | รายการ | Version | สถานะ / ผู้อนุมัติ |
 |---|---|---|
-| Formula | `thai_cv_risk_v1` | coefficients implemented; physician confirmation recorded below |
+| Formula | `thai_cv_risk_rama_v2` | Rama-aligned coefficients from physician-confirmed workbook |
 | Risk classification | `three_level_v1` (`<10`, `10–<20`, `≥20`) | approved by designated physician |
 | Recommendation content/rules | `demo_v1` | approved for configured screening language; no medication directives |
 | Package mapping | `demo_v1` | optional service mapping; clinical advice remains first |
@@ -12,9 +12,9 @@
 
 ## Formula coefficients
 
-Laboratory FullScore: `0.08183*AGE + 0.39499*SEX + 0.02084*SBP + 0.69974*DM + 0.00212*CHOL + 0.41916*SMOKING`; risk baseline `0.978296`, centering `7.04423`.
+Laboratory FullScore: `0.0818347640193792*AGE + 0.394986128542107*SEX + 0.0208425438624519*SBP + 0.699741921871077*DM + 0.00212384055469836*CHOL + 0.419162811751856*SMOKING`; risk baseline `0.964588`, centering `7.044233`.
 
-Non-laboratory FullScore: `0.079*AGE + 0.128*SEX + 0.019350987*SBP + 0.58454*DM + 3.512566*(WAIST/HEIGHT) + 0.459*SMOKING`; risk baseline `0.978296`, centering `7.720484`.
+Non-laboratory FullScore: `0.0794420169146399*AGE + 0.127658073818733*SEX + 0.0193509871323239*SBP + 0.584543504554125*DM + 0.0351256637183026*(WAIST/HEIGHT*100) + 0.459312425773018*SMOKING`; risk baseline `0.964588`, centering `7.712325`.
 
 Sources: Ministry of Public Health Thai CV Risk operational formula; Vathesatogkit et al., EGAT cohort, DOI `10.1093/ije/dyq218`; RCPT Dyslipidemia CPG 2024; Satian et al. external validation, DOI `10.14456/reg11med.2022.16`.
 

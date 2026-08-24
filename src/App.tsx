@@ -48,7 +48,12 @@ export default function App() {
 
   const factors = useMemo(() => result ? analyzeRiskFactors({ age, sex: assessment.gender as 'male'|'female', sbp: Number(assessment.sbp), diabetes: assessment.diabetes === 'yes', smoking: assessment.smoking, cholesterol: assessment.cholesterol ? Number(assessment.cholesterol) : undefined, height: assessment.height ? Number(assessment.height) : undefined, waist: assessment.waist ? Number(assessment.waist) : undefined, riskPercent: result.riskPercent }) : [], [result, assessment, age])
   const recommendations = useMemo(() => approvedRules ? buildRecommendations({ riskPercent: result?.riskPercent ?? 0, riskLevel: result?.riskLevel ?? 'low', age: Number.isFinite(age) ? age : 0, sex: assessment.gender, sbp: Number(assessment.sbp) || 0, diabetes: assessment.diabetes === 'yes', smoking: assessment.smoking, cholesterol: Number(assessment.cholesterol) || undefined, waistHeightRatio: Number(assessment.waist) / Number(assessment.height) || undefined, existingCvd: established, redFlags: emergency }, approvedRules, approvedContent) : { clinicalRecommendations: [], lifestyleRecommendations: [], suggestedTests: [], physicianConsultRecommended: false, packageTags: [], matchedRuleIds: [] }, [result, age, assessment, established, emergency, approvedRules, approvedContent])
-  const packages = useMemo(() => emergency || !approvedRules ? [] : matchPackages({ riskLevel: result?.riskLevel ?? 'low', riskPercent: result?.riskPercent ?? 0, riskFactors: factors, suggestedTests: recommendations.suggestedTests, age: Number.isFinite(age) ? age : 0, existingCvd: established, packageTags: recommendations.packageTags }, packageMaster), [emergency, result, factors, recommendations, age, established, packageMaster, approvedRules])
+  // Show every active, age-eligible hospital programme. Clinical rules still
+  // drive recommendations, but package browsing is not restricted by risk tier.
+  const packages = useMemo(() => emergency ? [] : packageMaster
+    .filter((item) => item.active && age >= item.minAge && age <= item.maxAge)
+    .sort((a, b) => a.priority - b.priority)
+    .map((item) => ({ ...item, matchScore: 0, matchReasons: [], matchedTests: [] })), [emergency, age, packageMaster])
 
   const go = (next: Screen) => { setErrors({}); setScreen(next); window.scrollTo({ top: 0, behavior: 'smooth' }) }
   const home = () => { reset(); setReferenceId(''); setSaveError(''); go('landing') }
